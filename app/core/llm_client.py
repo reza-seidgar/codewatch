@@ -8,6 +8,7 @@ returns a configured LLMClient.
 Note: This module depends on the `openai` package for AsyncOpenAI.
 """
 from typing import Any
+import asyncio
 
 from openai import AsyncOpenAI
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -44,32 +45,126 @@ class LLMClient:
         messages: list[dict[str, Any]],
         temperature: float = 0.3,
         max_tokens: int = 2048,
+        timeout: float = 120.0,
     ) -> str:
-        """Send messages to the configured LLM and return a text response.
-
-        Raises LLMError on failure.
+        """
+        ارسال پیام و دریافت پاسخ متنی
         """
         try:
+            print(f"🔵 LLMClient.chat called:")
+            print(f"   Model: {self._model}")
+            print(f"   Temperature: {temperature}")
+            print(f"   Max tokens: {max_tokens}")
+            print(f"   Messages count: {len(messages)}")
+
+            # ارسال درخواست
             response = await self._client.chat.completions.create(
                 model=self._model,
                 messages=messages,
                 temperature=temperature,
                 max_tokens=max_tokens,
+                timeout=timeout,
+                stream=False,  # مهم: غیرفعال کردن stream
             )
-            # Support for response.choices[0].message.content
-            choices = getattr(response, "choices", None)
-            if choices:
-                message = choices[0].message
-                content = getattr(message, "content", None)
-                if content is not None:
-                    return content
-            # Fallbacks
-            text = getattr(response, "text", None)
-            if text:
-                return text
-            raise LLMError("Empty response from LLM")
-        except Exception as exc:
-            raise LLMError(str(exc)) from exc
+
+            # Debug: نوع و ساختار response
+            print(f"🟢 Response received:")
+            print(f"   Type: {type(response)}")
+
+            # If provider returned a plain string (some SDKs do), accept it
+            if isinstance(response, str):
+                print("   Response is plain str")
+                if not response.strip():
+                    raise LLMError("Empty response from LLM (str)")
+                print(f"✅ Returning content: {len(response)} chars")
+                return response.strip()
+
+            # If provider returned a dict-like object
+            if isinstance(response, dict):
+                choices = response.get("choices")
+                print(f"   Has choices (dict): {choices is not None}")
+                if not choices:
+                    raise LLMError("Response has no choices (dict)")
+                first = choices[0]
+                # choice might be dict with message->content or text
+                if isinstance(first, dict):
+                    # message.content
+                    msg = first.get("message") or first.get("delta")
+                    if isinstance(msg, dict) and "content" in msg:
+                        content = msg.get("content")
+                        if content and str(content).strip():
+                            print(f"✅ Returning content from dict: {len(content)} chars")
+                            return str(content).strip()
+                    # fallback to 'text'
+                    if "text" in first and first["text"]:
+                        content = first["text"]
+                        if str(content).strip():
+                            print(f"✅ Returning content from dict.text: {len(content)} chars")
+                            return str(content).strip()
+                    raise LLMError("Could not extract content from dict choice")
+
+            # Otherwise try attribute-style extraction (SDK objects)
+            has_choices = hasattr(response, "choices")
+            print(f"   Has choices: {has_choices}")
+            if not has_choices:
+                raise LLMError(f"Response has no 'choices' attribute. Response type: {type(response)}")
+
+            try:
+                choices_len = len(response.choices)
+            except Exception:
+                choices_len = 0
+            print(f"   Choices count: {choices_len}")
+            if choices_len <= 0:
+                raise LLMError("Response has empty choices list")
+
+            choice = response.choices[0]
+            print(f"   First choice type: {type(choice)}")
+
+            # message may be attribute or key
+            message = None
+            if hasattr(choice, "message"):
+                message = choice.message
+            elif isinstance(choice, dict):
+                message = choice.get("message") or choice.get("delta")
+
+            print(f"   Has message: {message is not None}")
+            if message is None:
+                raise LLMError("Response choice has no 'message' attribute")
+
+            # message.content may be attribute or key
+            content = None
+            if hasattr(message, "content"):
+                content = message.content
+            elif isinstance(message, dict):
+                content = message.get("content") or message.get("text")
+
+            print(f"   Has content: {content is not None}")
+            if content is None:
+                raise LLMError("Response message has no 'content' attribute")
+
+            content_str = str(content)
+            print(f"   Content type: {type(content)}")
+            print(f"   Content is None: {content is None}")
+            print(f"   Content length: {len(content_str) if content_str else 0}")
+            preview = content_str[:200] if content_str else "NONE"
+            print(f"   Content preview: {preview}")
+
+            if not content_str.strip():
+                raise LLMError(f"Response content is empty or whitespace only: {repr(content_str)}")
+
+            print(f"✅ Returning content: {len(content_str)} chars")
+            return content_str.strip()
+
+        except LLMError:
+            raise
+        except Exception as e:
+            print(f"❌ Unexpected error in LLMClient.chat:")
+            print(f"   Error type: {type(e)}")
+            print(f"   Error message: {str(e)}")
+            import traceback
+
+            traceback.print_exc()
+            raise LLMError(f"LLM request failed: {type(e).__name__}: {str(e)}")
 
     async def health_check(self) -> bool:
         """Simple health check: ask the model to reply 'ok' and return True if we get any response."""
