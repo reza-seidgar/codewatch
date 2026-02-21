@@ -1,4 +1,6 @@
 """Code scanning endpoints"""
+from typing import List
+from app.schemas.project import ProjectResponse
 from fastapi import APIRouter, Depends, status, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from pydantic import BaseModel, Field
@@ -15,6 +17,22 @@ class ScanRequest(BaseModel):
     scan_mode: str = Field(..., description="Scan mode: quick, standard, or deep")
 
 router = APIRouter(prefix="/scans", tags=["scans"])
+
+
+@router.get("/", status_code=status.HTTP_200_OK, response_model=List[ProjectResponse])
+async def list_scans(
+    authenticated_user: User = Depends(verify_api_credentials),
+    session: AsyncSession = Depends(get_db),
+):
+    """List saved projects (scans) for the authenticated user.
+
+    Returns a list of projects with assigned IDs that can be used to start SAST runs.
+    """
+    projects = await ProjectService.get_projects_for_user(session, authenticated_user)
+
+    # Let FastAPI (Pydantic v2) convert SQLAlchemy ORM objects to the response model
+    # by returning the ORM objects directly. ProjectResponse.model_config uses from_attributes=True.
+    return projects
 
 @router.post("/submit", status_code=status.HTTP_200_OK)
 async def submit_scan(

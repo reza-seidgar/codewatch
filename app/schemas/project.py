@@ -1,13 +1,13 @@
 """Pydantic schema for Project"""
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict
 from datetime import datetime
-from typing import Optional
+
 
 class ProjectResponse(BaseModel):
-    id: int
+    id: str
     user_id: int
     project_path: str
     created_at: datetime
 
-    class Config:
-        from_attributes = True
+    # Pydantic v2 configuration for ORM conversion from SQLAlchemy objects
+    model_config = ConfigDict(from_attributes=True)

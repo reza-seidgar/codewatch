@@ -2,6 +2,7 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from sqlalchemy.exc import IntegrityError
+from uuid import uuid4
 from fastapi import HTTPException, status
 
 from app.models.project import Project
@@ -11,7 +12,8 @@ from app.schemas.project import ProjectResponse
 class ProjectService:
     @staticmethod
     async def create_project(session: AsyncSession, user: User, project_path: str) -> ProjectResponse:
-        new_project = Project(user_id=user.id, project_path=project_path)
+        # generate a random UUID string for the project id so callers can safely reference it
+        new_project = Project(id=str(uuid4()), user_id=user.id, project_path=project_path)
         session.add(new_project)
         try:
             await session.commit()

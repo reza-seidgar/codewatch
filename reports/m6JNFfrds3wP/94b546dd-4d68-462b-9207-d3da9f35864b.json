@@ -1,0 +1,139 @@
+{
+  "project_path": "E:\\Drive E\\work\\strix\\New folder",
+  "scan_result": {
+    "files_by_extension": {
+      "py": [
+        "bug.py"
+      ]
+    },
+    "config_files": [],
+    "total_files": 1,
+    "dependency_files_content": {}
+  },
+  "project_analysis": {
+    "language": "python",
+    "framework": "unknown",
+    "dependencies": [],
+    "entry_points": [],
+    "analysis_notes": "The codebase consists of a single Python file with no specified dependencies or framework. Further analysis is needed to determine functionality."
+  },
+  "vuln_priorities": [
+    {
+      "vuln_type": "sql_injection",
+      "priority": "critical",
+      "reason": "Allows attackers to execute arbitrary SQL queries, potentially compromising the entire database.",
+      "relevant_files": [
+        "bug.py"
+      ]
+    },
+    {
+      "vuln_type": "hardcoded_secrets",
+      "priority": "high",
+      "reason": "Exposes sensitive information such as API keys or passwords, leading to unauthorized access.",
+      "relevant_files": [
+        "bug.py"
+      ]
+    },
+    {
+      "vuln_type": "xss",
+      "priority": "high",
+      "reason": "Enables attackers to inject malicious scripts into web pages viewed by users, compromising user data.",
+      "relevant_files": []
+    },
+    {
+      "vuln_type": "auth_bypass",
+      "priority": "high",
+      "reason": "Allows unauthorized users to gain access to restricted areas of the application.",
+      "relevant_files": []
+    },
+    {
+      "vuln_type": "idor",
+      "priority": "medium",
+      "reason": "Insecure Direct Object References can allow users to access data they shouldn't be able to.",
+      "relevant_files": []
+    },
+    {
+      "vuln_type": "path_traversal",
+      "priority": "medium",
+      "reason": "Allows attackers to access files outside the intended directory, potentially exposing sensitive information.",
+      "relevant_files": []
+    },
+    {
+      "vuln_type": "ssrf",
+      "priority": "medium",
+      "reason": "Server-Side Request Forgery can allow attackers to make requests from the server to internal services.",
+      "relevant_files": []
+    },
+    {
+      "vuln_type": "insecure_deserialization",
+      "priority": "low",
+      "reason": "Can lead to remote code execution or other attacks if untrusted data is deserialized.",
+      "relevant_files": []
+    }
+  ],
+  "findings": [
+    {
+      "vuln_type": "sql_injection",
+      "severity": "critical",
+      "file_path": "bug.py",
+      "line_number": 36,
+      "description": "User input is directly used in a SQL query, allowing for arbitrary SQL execution in a login endpoint.",
+      "code_snippet": "query = f\"SELECT * FROM users WHERE username = '{username}' AND password = '{password}'\"",
+      "confidence": 1.0,
+      "detected_by": "sql_injection"
+    },
+    {
+      "vuln_type": "sql_injection",
+      "severity": "high",
+      "file_path": "bug.py",
+      "line_number": 27,
+      "description": "User input is directly used in a SQL query, allowing for arbitrary SQL execution in a data-retrieval endpoint.",
+      "code_snippet": "query = f\"SELECT * FROM users WHERE username = '{username}'\"",
+      "confidence": 1.0,
+      "detected_by": "sql_injection"
+    },
+    {
+      "vuln_type": "hardcoded_secrets",
+      "severity": "high",
+      "file_path": "bug.py",
+      "line_number": 15,
+      "description": "Hardcoded password for the admin user, which can lead to unauthorized access.",
+      "code_snippet": "cursor.execute(\"INSERT OR IGNORE INTO users (id, username, password, email, role) VALUES (1, 'admin', 'admin123', 'admin@example.com', 'admin')\")",
+      "confidence": 1.0,
+      "detected_by": "hardcoded_secrets"
+    },
+    {
+      "vuln_type": "hardcoded_secrets",
+      "severity": "high",
+      "file_path": "bug.py",
+      "line_number": 16,
+      "description": "Hardcoded password for the user 'john', which can lead to unauthorized access.",
+      "code_snippet": "cursor.execute(\"INSERT OR IGNORE INTO users (id, username, password, email, role) VALUES (2, 'john', 'john456', 'john@example.com', 'user')\")",
+      "confidence": 1.0,
+      "detected_by": "hardcoded_secrets"
+    }
+  ],
+  "agents_to_run": [
+    "sql_injection",
+    "hardcoded_secrets",
+    "xss",
+    "auth_bypass",
+    "idor",
+    "path_traversal",
+    "ssrf",
+    "insecure_deserialization"
+  ],
+  "completed_agents": [
+    "sql_injection",
+    "hardcoded_secrets",
+    "xss",
+    "auth_bypass",
+    "idor",
+    "path_traversal",
+    "ssrf",
+    "insecure_deserialization"
+  ],
+  "current_agent": "insecure_deserialization",
+  "errors": [],
+  "final_report": "# 🔐 Security Scan Report\n\n**Project:** `Language.PYTHON / Framework.UNKNOWN`\n**Findings:** 4  |  🔴 Critical: 1  🟠 High: 3  🟡 Medium: 0  🟢 Low: 0\n\n---\n\n## 🔴 CRITICAL (1)\n\n### 1. Sql Injection\n**File:** `bug.py` · line **36**\n**Confidence:** 100%\n\nUser input is directly used in a SQL query, allowing for arbitrary SQL execution in a login endpoint.\n```python\nquery = f\"SELECT * FROM users WHERE username = '{username}' AND password = '{password}'\"\n```\n\n## 🟠 HIGH (3)\n\n### 1. Sql Injection\n**File:** `bug.py` · line **27**\n**Confidence:** 100%\n\nUser input is directly used in a SQL query, allowing for arbitrary SQL execution in a data-retrieval endpoint.\n```python\nquery = f\"SELECT * FROM users WHERE username = '{username}'\"\n```\n\n### 2. Hardcoded Secrets\n**File:** `bug.py` · line **15**\n**Confidence:** 100%\n\nHardcoded password for the admin user, which can lead to unauthorized access.\n```python\ncursor.execute(\"INSERT OR IGNORE INTO users (id, username, password, email, role) VALUES (1, 'admin', 'admin123', 'admin@example.com', 'admin')\")\n```\n\n### 3. Hardcoded Secrets\n**File:** `bug.py` · line **16**\n**Confidence:** 100%\n\nHardcoded password for the user 'john', which can lead to unauthorized access.\n```python\ncursor.execute(\"INSERT OR IGNORE INTO users (id, username, password, email, role) VALUES (2, 'john', 'john456', 'john@example.com', 'user')\")\n```\n"
+}

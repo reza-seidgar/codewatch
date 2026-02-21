@@ -1,5 +1,5 @@
 """Project SQLAlchemy model"""
-from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
+from sqlalchemy import Column, String, Integer, ForeignKey, DateTime
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from datetime import datetime
@@ -17,7 +17,8 @@ class Project(Base):
     """
     __tablename__ = "projects"
 
-    id = Column(Integer, primary_key=True, autoincrement=True)
+    # Use a string UUID for project id to avoid leaking sequential ids and to match SAST reports
+    id = Column(String(36), primary_key=True, nullable=False)
     user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
     project_path = Column(String(512), nullable=False)
     created_at = Column(DateTime(timezone=True), server_default=func.now(), nullable=False)
