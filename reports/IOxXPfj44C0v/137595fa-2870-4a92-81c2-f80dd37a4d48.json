@@ -1,0 +1,283 @@
+{
+  "project_path": "E:\\Drive E\\work\\strix\\TIPAX",
+  "scan_result": {
+    "files_by_extension": {
+      "md": [
+        "README.md"
+      ],
+      "sln": [
+        "wallet.api.UserManagement.sln"
+      ],
+      "csproj": [
+        "Api\\Api.csproj",
+        "Application\\Application.csproj",
+        "Core\\Core.csproj",
+        "Domain\\Domain.csproj",
+        "Gateway\\Gateway.csproj",
+        "Infrastructure\\Infrastructure.csproj",
+        "Test.Api\\Test.Api\\Test.Api.csproj"
+      ],
+      "json": [
+        "Api\\appsettings.Development.json",
+        "Api\\appsettings.json",
+        "Api\\.config\\dotnet-tools.json"
+      ],
+      "cs": [
+        "Api\\Class.cs",
+        "Api\\Program.cs",
+        "Api\\Startup.cs",
+        "Api\\Const\\ServiceRoleConst.cs",
+        "Api\\Controllers\\Admin\\AuthController.cs",
+        "Api\\Controllers\\Admin\\CitiesController.cs",
+        "Api\\Controllers\\Admin\\ClaimController.cs",
+        "Api\\Controllers\\Admin\\DeviceController.cs",
+        "Api\\Controllers\\Admin\\GroupController.cs",
+        "Api\\Controllers\\Admin\\MenuController.cs",
+        "Api\\Controllers\\Admin\\MenuRoleController.cs",
+        "Api\\Controllers\\Admin\\MenuRoleLogsController.cs",
+        "Api\\Controllers\\Admin\\MenuServiceController.cs",
+        "Api\\Controllers\\Admin\\MerchantController.cs",
+        "Api\\Controllers\\Admin\\OtpController.cs",
+        "Api\\Controllers\\Admin\\ProvincesController.cs",
+        "Api\\Controllers\\Admin\\RoleController.cs",
+        "Api\\Controllers\\Admin\\RoleServiceController.cs",
+        "Api\\Controllers\\Admin\\RoleServiceLogsController.cs",
+        "Api\\Controllers\\Admin\\ServiceController.cs",
+        "Api\\Controllers\\Admin\\UserController.cs",
+        "Api\\Controllers\\Admin\\UserGroupController.cs",
+        "Api\\Controllers\\Admin\\UserRoleController.cs",
+        "Api\\Controllers\\Admin\\UserRoleLogsController.cs",
+        "Api\\Controllers\\v1\\AuthController.cs",
+        "Api\\Controllers\\v1\\CityController.cs",
+        "Api\\Controllers\\v1\\ClaimController.cs",
+        "Api\\Controllers\\v1\\DeviceController.cs",
+        "Api\\Controllers\\v1\\HealthcheckController.cs",
+        "Api\\Controllers\\v1\\HeartBeatController.cs"
+      ],
+      "config": [
+        "Api\\NLog.config",
+        "Api\\web.config"
+      ],
+      "resx": [
+        "Core\\Resources\\Resource-en.resx",
+        "Core\\Resources\\Resource-fa.resx"
+      ],
+      "refactorlog": [
+        "Database\\Database.refactorlog"
+      ],
+      "sqlproj": [
+        "Database\\Database.sqlproj"
+      ],
+      "sqlproj_backup": [
+        "Database\\Database.sqlproj_backup"
+      ],
+      "sql": [
+        "Database\\StoredProcedure\\SPCountFailedEventsFiltered.sql",
+        "Database\\StoredProcedure\\SPGetClaimsFiltered.sql.sql",
+        "Database\\StoredProcedure\\SPGetDevicesFromGroups.sql",
+        "Database\\StoredProcedure\\SPGetDevicesInUserList.sql",
+        "Database\\StoredProcedure\\SPGetMenuServicesFiltered.sql",
+        "Database\\StoredProcedure\\SPGetMenusFilteredByRole.sql",
+        "Database\\StoredProcedure\\SPGetRoleServicesFiltered.sql",
+        "Database\\StoredProcedure\\SPGetUserByIdForUpdate.sql",
+        "Database\\StoredProcedure\\SPGetUserCityAndProvince.sql",
+        "Database\\StoredProcedure\\SPGetUserClaims.sql",
+        "Database\\StoredProcedure\\SPGetUserClaimsByClaimValue.sql",
+        "Database\\StoredProcedure\\SPGetUserGroupFiltered.sql",
+        "Database\\StoredProcedure\\SPGetUserRoles.sql",
+        "Database\\StoredProcedure\\SPGetUserRolesFiltered.sql",
+        "Database\\StoredProcedure\\SPGetUsersFiltered.sql",
+        "Database\\StoredProcedure\\SPGetUsersFromGroupList.sql",
+        "Database\\StoredProcedure\\SPGetUsersInList.sql",
+        "Database\\Tables\\Auth.sql",
+        "Database\\Tables\\Cities.sql",
+        "Database\\Tables\\Claim.sql",
+        "Database\\Tables\\Device.sql",
+        "Database\\Tables\\EventLog.sql",
+        "Database\\Tables\\Group.sql",
+        "Database\\Tables\\Menu.sql",
+        "Database\\Tables\\MenuService.sql",
+        "Database\\Tables\\Otp.sql",
+        "Database\\Tables\\Province.sql",
+        "Database\\Tables\\Role.sql",
+        "Database\\Tables\\RoleService.sql",
+        "Database\\Tables\\Service.sql"
+      ]
+    },
+    "config_files": [
+      "wallet.api.UserManagement.sln",
+      "Api\\Api.csproj",
+      "Application\\Application.csproj",
+      "Core\\Core.csproj",
+      "Domain\\Domain.csproj",
+      "Gateway\\Gateway.csproj",
+      "Infrastructure\\Infrastructure.csproj",
+      "Test.Api\\Test.Api\\Test.Api.csproj"
+    ],
+    "total_files": 439,
+    "dependency_files_content": {
+      "wallet.api.UserManagement.sln": "﻿\nMicrosoft Visual Studio Solution File, Format Version 12.00\n# Visual Studio Version 17\nVisualStudioVersion = 17.0.32014.148\nMinimumVisualStudioVersion = 10.0.40219.1\nProject(\"{2150E333-8FDC-42A3-9474-1A3956D46DE8}\") = \"01-Core\", \"01-Core\", \"{5DD264C1-CDCD-4C43-9343-15F98363D1D3}\"\nEndProject\nProject(\"{2150E333-8FDC-42A3-9474-1A3956D46DE8}\") = \"02-Domain\", \"02-Domain\", \"{47964C4B-A4B8-4465-8F5B-AC071F74BE0F}\"\nEndProject\nProject(\"{2150E333-8FDC-42A3-9474-1A3956D46DE8}\") = \"03-Infrastructure\", \"03-Infrastructure\", \"{FDF2F1A6-A235-4E96-B12E-AF82F011F0E4}\"\nEndProject\nProject(\"{2150E333-8FDC-42A3-9474-1A3956D46DE8}\") = \"04-Gateway\", \"04-Gateway\", \"{D819AC49-9120-405C-B241-1E24E386919C}\"\nEndProject\nProject(\"{2150E333-8FDC-42A3-9474-1A3956D46DE8}\") = \"05-Application\", \"05-Application\", \"{C5D8EA9C-7305-474B-8BA8-7E5C290F84BF}\"\nEndProject\nProject(\"{2150E333-8FDC-42A3-9474-1A3956D46DE8}\") = \"06-Api\", \"06-Api\", \"{995C48D0-45A9-4305-8863-0D9F84E72D74}\"\nEndProject\nProject(\"{9A19103F-16F7-4668-BE54-9A1E7A4F7556}\") = \"Core\", \"Core\\Core.csproj\", \"{97BE3DA5-5A60-4D56-BE9E-115A34F65618}\"\nEndProject\nProject(\"{9A19103F-16F7-4668-BE54-9A1E7A4F7556}\") = \"Domain\", \"Domain\\Domain.csproj\", \"{EF6BC93C-6282-4CC3-AEBD-7607D6979D11}\"\nEndProject\nProject(\"{9A19103F-16F7-4668-BE54-9A1E7A4F7556}\") = \"Api\", \"Api\\Api.csproj\", \"{C8B4880D-F75A-4DEF-B49D-3FEB8D28BC34}\"\nEndProject\nProject(\"{9A19103F-16F7-4668-BE54-9A1E7A4F7556}\") = \"Infrastructure\", \"Infrastructure\\Infrastructure.csproj\", \"{D105D544-3E51-4189-AC3C-67F56D31A98A}\"\nEndProject\nProject(\"{9A19103F-16F7-4668-BE54-9A1E7A4F7556}\") = \"Gateway\", \"Gateway\\Gateway.csproj\", \"{32F17F63-D688-4935-A7A2-3C9ED9464845}\"\nEndProject\nProject(\"{9A19103F-16F7-4668-BE54-9A1E7A4F7556}\") = \"Application\", \"Application\\Application.csproj\", \"{9ACCFD31-3484-47A4-AAC2-70832BC7B7F0}\"\nEndProject\nProject(\"{2150E333-8FDC-42A3-9474-1A3956D46DE8}\") = \"Test\", \"Test\", \"{3D1DF3AC-82A1-4A9A-A268-14E857E8A4B2}\"\nEndProject\nProject(\"{9A19103F-16F7-4668-BE54-9A1E7A4F7556}\") = \"Test.Api\", \"Test.Api\\Test.Api\\Test.Api.csproj\", \"{104749CF-F57E-45A5-9495-1A1CCA9978E0}\"\nEndProject\nGlobal\n\tGlobalSection(SolutionConfigurationPlatforms) = preSolution\n\t\tDebug|Any CPU = Debug|Any CPU\n\t\tRelease|Any CPU = Release|Any CPU\n\tEndGlobalSection\n\tGlobalSection(ProjectConfigurationPlatforms) = postSolution\n\t\t{97BE3DA5-5A60-4D56-BE9E-115A34F65618}.Debug|Any CPU.ActiveCfg = Debug|Any CPU\n\t\t{97BE3DA5-5A60-4D56-BE9E-115A34F65618}.Debug|Any CPU.Build.0 = Debug|Any CPU\n\t\t{97BE3DA5-5A60-4D56-BE9E-115A34F65618}.Release|Any CPU.ActiveCfg = Release|Any CPU\n\t\t{97BE3DA5-5A60-4D56-BE9E-115A34F65618}.Release|Any CPU.Build.0 = Release|Any CPU\n\t\t{EF6BC93C-6282-4CC3-AEBD-7607D6979D11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU\n\t\t{EF6BC93C-6282-4CC3-AEBD-7607D6979D11}.Debug|Any CPU.Build.0 = Debug|Any CPU\n\t\t{EF6BC93C-6282-4CC3-AEBD-7607D6979D11}.Release|Any CPU.ActiveCfg = Release|Any CPU\n\t\t{EF6BC93C-6282-4CC3-AEBD-7607D6979D11}.Release|Any CPU.Build.0 = Release|Any CPU\n\t\t{C8B4880D-F75A-4DEF-B49D-3FEB8D28BC34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU\n\t\t{C8B4880D-F75A-4DEF-B49D-3FEB8D28BC34}.Debug|Any CPU.Build.0 = Debug|Any CPU\n\t\t{C8B4880D-F75A-4DEF-B49D-3FEB8D28BC34}.Release|Any CPU.ActiveCfg = Release|Any CPU\n\t\t{C8B4880D-F75A-4DEF-B49D-3FEB8D28BC34}.Release|Any CPU.Build.0 = Release|Any CPU\n\t\t{D105D544-3E51-4189-AC3C-67F56D31A98A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU\n\t\t{D105D544-3E51-4189-AC3C-67F56D31A98A}.Debug|Any CPU.Build.0 = Debug|Any CPU\n\t\t{D105D544-3E51-4189-AC3C-67F56D31A98A}.Release|Any CPU.ActiveCfg = Release|Any CPU\n\t\t{D105D544-3E51-4189-AC3C-67F56D31A98A}.Release|Any CPU.Build.0 = Release|Any CPU\n\t\t{32F17F63-D688-4935-A7A2-3C9ED9464845}.Debug|Any CPU.ActiveCfg = Debug|Any CPU\n\t\t{32F17F63-D688-4935-A7A2-3C9ED9464845}.Debug|Any CPU.Build.0 = Debug|Any CPU\n\t\t{32F17F63-D688-4935-A7A2-3C9ED9464845}.Release|Any CPU.ActiveCfg = Release|Any CPU\n\t\t{32F17F63-D688-4935-A7A2-3C9ED9464845}.Release|Any CPU.Build.0 = Release|Any CPU\n\t\t{9ACCFD31-3484-47A4-AAC2-70832BC7B7F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU\n\t\t{9ACCFD31-3484-47A4-AAC2-70832BC7B7F0}.Debug|Any CPU.Build.0 = Debug|Any CPU\n\t\t{9ACCFD31-3484-47A4-AAC2-70832BC7B7F0}.Release|Any CPU.ActiveCfg = Release|Any CPU\n\t\t{9ACCFD31-3484-47A4-AAC2-70832BC7B7F0}.Release|Any CPU.Build.0 = Release|Any CPU\n\t\t{104749CF-F57E-45A5-9495-1A1CCA9978E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU\n\t\t{104749CF-F57E-45A5-9495-1A1CCA9978E0}.Debug|Any CPU.Build.0 = Debug|Any CPU\n\t\t{104749CF-F57E-45A5-9495-1A1CCA9978E0}.Release|Any CPU.ActiveCfg = Release|Any CPU\n\t\t{104749CF-F57E-45A5-9495-1A1CCA9978E0}.Release|Any CPU.Build.0 = Release|Any CPU\n\tEndGlobalSection\n\tGlobalSection(SolutionProperties) = preSolution\n\t\tHideSolutionNode = FALSE\n\tEndGlobalSection\n\tGlobalSection(NestedProjects) = preSolution\n\t\t{97BE3DA5-5A60-4D56-BE9E-115A34F65618} = {5DD264C1-CDCD-4C43-9343-15F98363D1D3}\n\t\t{EF6BC93C-6282-4CC3-AEBD-7607D6979D11} = {47964C4B-A4B8-4465-8F5B-AC071F74BE0F}\n\t\t{C8B4880D-F75A-4DEF-B49D-3FEB8D28BC34} = {995C48D0-45A9-4305-8863-0D9F84E72D74}\n\t\t{D105D544-3E51-4189-AC3C-67F56D31A98A} = {FDF2F1A6-A235-4E96-B12E-AF82F011F0E4}\n\t\t{32F17F63-D688-4935-A7A2-3C9",
+      "Api.csproj": "﻿<Project Sdk=\"Microsoft.NET.Sdk.Web\">\n\n  <PropertyGroup>\n    <TargetFramework>net8.0</TargetFramework>\n    <UserSecretsId>b5282f18-bab5-4681-a647-75f0c33d2007</UserSecretsId>\n  </PropertyGroup>\n\n  <ItemGroup>\n    <Compile Remove=\"StartupHelpers\\**\" />\n    <Content Remove=\"StartupHelpers\\**\" />\n    <EmbeddedResource Remove=\"StartupHelpers\\**\" />\n    <None Remove=\"StartupHelpers\\**\" />\n  </ItemGroup>\n\n  <ItemGroup>\n    <PackageReference Include=\"Backend.HTTP.Common.Login.LDAP\" Version=\"0.2.1\" />\n    <PackageReference Include=\"MediatR\" Version=\"9.0.0\" />\n    <PackageReference Include=\"Microsoft.AspNetCore.Authentication.JwtBearer\" Version=\"5.0.8\" />\n    <PackageReference Include=\"MongoDB.Bson\" Version=\"3.2.1\" />\n    <PackageReference Include=\"MongoDB.Driver\" Version=\"3.2.1\" />\n    <PackageReference Include=\"NLog.Mongo\" Version=\"5.0.0\" />\n    <PackageReference Include=\"Novell.Directory.Ldap.NETStandard\" Version=\"3.6.0\" />\n    <PackageReference Include=\"Swashbuckle.AspNetCore\" Version=\"6.1.4\" />\n    <PackageReference Include=\"System.DirectoryServices.AccountManagement\" Version=\"6.0.0\" />\n    <PackageReference Include=\"System.Linq.Expressions\" Version=\"4.3.0\" />\n    <PackageReference Include=\"wallet.lib.BaseApi\" Version=\"8.1.0\" />\n    <PackageReference Include=\"wallet.lib.logger\" Version=\"1.0.0\" />\n    <PackageReference Include=\"wallet.lib.rabbit\" Version=\"4.2.0\" />\n\n    </ItemGroup>\n\n  <ItemGroup>\n    <ProjectReference Include=\"..\\Application\\Application.csproj\" />\n    <ProjectReference Include=\"..\\Core\\Core.csproj\" />\n    <ProjectReference Include=\"..\\Domain\\Domain.csproj\" />\n    <ProjectReference Include=\"..\\Gateway\\Gateway.csproj\" />\n    <ProjectReference Include=\"..\\Infrastructure\\Infrastructure.csproj\" />\n  </ItemGroup>\n  \n\t<PropertyGroup>\n\t\t<RollForward>Major</RollForward>\n\t</PropertyGroup>\n\n</Project>\n",
+      "Application.csproj": "﻿<Project Sdk=\"Microsoft.NET.Sdk\">\n\n  <PropertyGroup>\n    <TargetFramework>net8.0</TargetFramework>\n  </PropertyGroup>\n\n  <ItemGroup>\n    <Compile Remove=\"Auth\\LoginWithPassword\\Dto\\**\" />\n    <EmbeddedResource Remove=\"Auth\\LoginWithPassword\\Dto\\**\" />\n    <None Remove=\"Auth\\LoginWithPassword\\Dto\\**\" />\n  </ItemGroup>\n\n  <ItemGroup>\n    <PackageReference Include=\"AWSSDK.DynamoDBv2\" Version=\"3.7.5.16\" />\n    <PackageReference Include=\"MediatR\" Version=\"9.0.0\" />\n    <PackageReference Include=\"MediatR.Extensions.Microsoft.DependencyInjection\" Version=\"9.0.0\" />\n    <PackageReference Include=\"Microsoft.AspNetCore.Authentication\" Version=\"2.2.0\" />\n    <PackageReference Include=\"Microsoft.AspNetCore.Http.Abstractions\" Version=\"2.2.0\" />\n    <PackageReference Include=\"Microsoft.Extensions.Http\" Version=\"5.0.0\" />\n    <PackageReference Include=\"Microsoft.AspNetCore.Cryptography.KeyDerivation\" Version=\"6.0.0\" />\n    <PackageReference Include=\"Novell.Directory.Ldap.NETStandard\" Version=\"3.6.0\" />\n    <PackageReference Include=\"System.DirectoryServices\" Version=\"6.0.0\" />\n    <PackageReference Include=\"System.DirectoryServices.AccountManagement\" Version=\"6.0.0\" />\n    <PackageReference Include=\"wallet.lib.common\" Version=\"1.1.1\" />\n    <PackageReference Include=\"wallet.lib.Jwt\" Version=\"5.0.0\" />\n    <PackageReference Include=\"wallet.lib.rabbit\" Version=\"4.2.0\" />\n  </ItemGroup>\n\n  <ItemGroup>\n    <ProjectReference Include=\"..\\Core\\Core.csproj\" />\n    <ProjectReference Include=\"..\\Domain\\Domain.csproj\" />\n    <ProjectReference Include=\"..\\Gateway\\Gateway.csproj\" />\n    <ProjectReference Include=\"..\\Infrastructure\\Infrastructure.csproj\" />\n  </ItemGroup>\n\n  <ItemGroup>\n    <Folder Include=\"Auth\\NewFolder\\\" />\n  </ItemGroup>\n\n</Project>\n",
+      "Core.csproj": "<Project Sdk=\"Microsoft.NET.Sdk\">\n\n  <PropertyGroup>\n    <TargetFramework>net8.0</TargetFramework>\n  </PropertyGroup>\n\n  <ItemGroup>\n    <PackageReference Include=\"wallet.lib.Base\" Version=\"1.0.7\" />\n    <PackageReference Include=\"Microsoft.Extensions.DependencyInjection\" Version=\"5.0.2\" />\n    <PackageReference Include=\"Microsoft.Extensions.DependencyInjection.Abstractions\" Version=\"5.0.0\" />\n    <PackageReference Include=\"Microsoft.AspNetCore.Mvc.Core\" Version=\"2.2.5\" />\n  </ItemGroup>\n\n</Project>\n",
+      "Domain.csproj": "<Project Sdk=\"Microsoft.NET.Sdk\">\n\n  <PropertyGroup>\n    <TargetFramework>net8.0</TargetFramework>\n  </PropertyGroup>\n\n  <ItemGroup>\n    <None Remove=\"UploadHelper.cs~RF9fb418.TMP\" />\n  </ItemGroup>\n\n  <ItemGroup>\n    <PackageReference Include=\"Microsoft.AspNetCore.Http.Features\" Version=\"5.0.8\" />\n    <PackageReference Include=\"Microsoft.Extensions.Caching.Abstractions\" Version=\"5.0.0\" />\n    <PackageReference Include=\"Microsoft.Extensions.Configuration\" Version=\"5.0.0\" />\n    <PackageReference Include=\"Microsoft.Extensions.Configuration.Abstractions\" Version=\"9.0.0\" />\n    <PackageReference Include=\"Microsoft.Extensions.Configuration.Binder\" Version=\"9.0.0\" />\n    <PackageReference Include=\"Microsoft.Extensions.Configuration.FileExtensions\" Version=\"5.0.0\" />\n    <PackageReference Include=\"Microsoft.Extensions.Configuration.Json\" Version=\"5.0.0\" />\n    <PackageReference Include=\"SixLabors.ImageSharp\" Version=\"1.0.3\" />\n    <PackageReference Include=\"System.IdentityModel.Tokens.Jwt\" Version=\"6.11.1\" />\n    <PackageReference Include=\"Microsoft.AspNetCore.Cryptography.KeyDerivation\" Version=\"6.0.0\" />\n    <PackageReference Include=\"EasyCaching.InMemory\" Version=\"1.5.1\" />\n    <PackageReference Include=\"Mapster\" Version=\"7.3.0\" />\n  </ItemGroup>\n\n  <ItemGroup>\n    <ProjectReference Include=\"..\\Core\\Core.csproj\" />\n  </ItemGroup>\n\n</Project>\n",
+      "Gateway.csproj": "﻿<Project Sdk=\"Microsoft.NET.Sdk\">\n\n  <PropertyGroup>\n    <TargetFramework>net8.0</TargetFramework>\n  </PropertyGroup>\n\n  <ItemGroup>\n    <PackageReference Include=\"Microsoft.Extensions.Http\" Version=\"5.0.0\" />\n\t  <PackageReference Include=\"Microsoft.AspNetCore.Http.Abstractions\" Version=\"2.2.0\" />\n\t  <PackageReference Include=\"Microsoft.Extensions.Configuration.Abstractions\" Version=\"9.0.0\" />\n\t  <PackageReference Include=\"Microsoft.Extensions.DependencyInjection.Abstractions\" Version=\"9.0.0\" />\n\t  <PackageReference Include=\"RestEase\" Version=\"1.6.4\" />\n\t  <PackageReference Include=\"RestEase.HttpClientFactory\" Version=\"1.6.4\" />\n\t  \n\t  <PackageReference Include=\"wallet.lib.common\" Version=\"1.1.1\" />\n    <PackageReference Include=\"wallet.lib.Base\" Version=\"1.0.7\" />\n    <PackageReference Include=\"Request_Helper\" Version=\"4.0.0\" />\n    <!--<PackageReference Include=\"wallet.lib.logger\" Version=\"1.0.0\" />-->\n\t  <PackageReference Include=\"NLog.Mongo\" Version=\"4.6.0.86\" />\n\t  <PackageReference Include=\"NLog.Targets.Seq\" Version=\"1.1.0\" />\n\t  <PackageReference Include=\"NLog.Targets.Syslog\" Version=\"5.0.0\" />\n\t  <PackageReference Include=\"NLog\" Version=\"5.2.7\" />\n\t  <PackageReference Include=\"NLog.Database\" Version=\"5.2.7\" />\n\n  </ItemGroup>\n\n  <ItemGroup>\n    <ProjectReference Include=\"..\\Infrastructure\\Infrastructure.csproj\" />\n    <ProjectReference Include=\"..\\Core\\Core.csproj\" />\n    <ProjectReference Include=\"..\\Domain\\Domain.csproj\" />\n  </ItemGroup>\n\n  <ItemGroup>\n    <Folder Include=\"ConnectedServices\" />\n  </ItemGroup>\n\n</Project>\n",
+      "Infrastructure.csproj": "﻿<Project Sdk=\"Microsoft.NET.Sdk\">\n\n  <PropertyGroup>\n    <TargetFramework>net8.0</TargetFramework>\n  </PropertyGroup>\n\n  <ItemGroup>\n    <PackageReference Include=\"Dapper.Contrib\" Version=\"2.0.78\" />\n    <PackageReference Include=\"Microsoft.AspNetCore.Http.Abstractions\" Version=\"2.2.0\" />\n    <PackageReference Include=\"Microsoft.Extensions.Http\" Version=\"5.0.0\" />\n    <PackageReference Include=\"MongoDB.Bson\" Version=\"3.2.1\" />\n    <PackageReference Include=\"MongoDB.Driver\" Version=\"3.2.1\" />\n    <PackageReference Include=\"Novell.Directory.Ldap.NETStandard\" Version=\"3.6.0\" />\n    <PackageReference Include=\"wallet.lib.Base\" Version=\"1.0.7\" />\n    <PackageReference Include=\"wallet.lib.dapper\" Version=\"6.3.0\" />\n    <PackageReference Include=\"wallet.lib.common\" Version=\"1.1.1\" />\n    <PackageReference Include=\"Microsoft.AspNetCore.Cryptography.KeyDerivation\" Version=\"6.0.0\" />\n  </ItemGroup>\n\n  <ItemGroup>\n    <ProjectReference Include=\"..\\Core\\Core.csproj\" />\n    <ProjectReference Include=\"..\\Domain\\Domain.csproj\" />\n  </ItemGroup>\n\n</Project>\n",
+      "Test.Api.csproj": "<Project Sdk=\"Microsoft.NET.Sdk\">\n\n  <PropertyGroup>\n    <TargetFramework>net8.0</TargetFramework>\n\n    <IsPackable>false</IsPackable>\n  </PropertyGroup>\n\n  <ItemGroup>\n    <PackageReference Include=\"Microsoft.NET.Test.Sdk\" Version=\"17.5.0\" />\n    <PackageReference Include=\"xunit\" Version=\"2.4.2\" />\n    <PackageReference Include=\"xunit.runner.visualstudio\" Version=\"2.4.5\">\n      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>\n      <PrivateAssets>all</PrivateAssets>\n    </PackageReference>\n    <PackageReference Include=\"coverlet.collector\" Version=\"3.2.0\">\n      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>\n      <PrivateAssets>all</PrivateAssets>\n    </PackageReference>\n  </ItemGroup>\n  \n  <PropertyGroup>\n\t<RollForward>Major</RollForward>\n  </PropertyGroup>\n\n</Project>\n"
+    }
+  },
+  "project_analysis": {
+    "language": "unknown",
+    "framework": "unknown",
+    "dependencies": [
+      "Backend.HTTP.Common.Login.LDAP",
+      "MediatR",
+      "AWSSDK.DynamoDBv2",
+      "MediatR.Extensions.Microsoft.DependencyInjection",
+      "wallet.lib.Base",
+      "Microsoft.Extensions.DependencyInjection",
+      "Microsoft.Extensions.DependencyInjection.Abstractions",
+      "Microsoft.AspNetCore.Mvc.Core"
+    ],
+    "entry_points": [
+      "Api.csproj",
+      "Application.csproj",
+      "Core.csproj"
+    ],
+    "analysis_notes": "The codebase consists of multiple projects organized under a solution file. It targets .NET 8.0 and includes various dependencies for web development, dependency injection, and AWS services."
+  },
+  "vuln_priorities": [
+    {
+      "vuln_type": "auth_bypass",
+      "priority": "critical",
+      "reason": "LDAP authentication vulnerabilities can allow unauthorized access.",
+      "relevant_files": [
+        "Api\\Controllers\\Admin\\MenuRoleController.cs",
+        "Api\\Controllers\\v1\\AuthController.cs",
+        "Api\\Startup.cs",
+        "Api\\Controllers\\Admin\\DeviceController.cs",
+        "Api\\Controllers\\Admin\\MenuController.cs",
+        "Api\\Const\\ServiceRoleConst.cs",
+        "Api\\Controllers\\Admin\\AuthController.cs",
+        "Api\\Controllers\\Admin\\MenuRoleLogsController.cs",
+        "Api\\Controllers\\Admin\\RoleController.cs",
+        "Api\\Controllers\\Admin\\RoleServiceController.cs",
+        "Api\\Controllers\\Admin\\RoleServiceLogsController.cs",
+        "Api\\Controllers\\Admin\\UserRoleController.cs"
+      ]
+    },
+    {
+      "vuln_type": "hardcoded_secrets",
+      "priority": "high",
+      "reason": "Dependencies may contain hardcoded credentials that can be exploited.",
+      "relevant_files": [
+        "Api\\Controllers\\Admin\\AuthController.cs",
+        "Api\\Controllers\\v1\\AuthController.cs",
+        "Api\\appsettings.Development.json",
+        "Api\\appsettings.json",
+        "Api\\.config\\dotnet-tools.json",
+        "Api\\NLog.config",
+        "Api\\web.config"
+      ]
+    },
+    {
+      "vuln_type": "insecure_deserialization",
+      "priority": "high",
+      "reason": "MediatR and its extensions may be susceptible to insecure deserialization attacks.",
+      "relevant_files": []
+    },
+    {
+      "vuln_type": "sql_injection",
+      "priority": "medium",
+      "reason": "Potential for SQL injection if user input is not properly sanitized in backend services.",
+      "relevant_files": []
+    },
+    {
+      "vuln_type": "xss",
+      "priority": "medium",
+      "reason": "Improper handling of user input in ASP.NET Core MVC could lead to XSS vulnerabilities.",
+      "relevant_files": []
+    },
+    {
+      "vuln_type": "ssrf",
+      "priority": "medium",
+      "reason": "Misconfigured AWS SDK usage may expose the application to SSRF attacks.",
+      "relevant_files": []
+    },
+    {
+      "vuln_type": "path_traversal",
+      "priority": "low",
+      "reason": "File handling in dependencies may be vulnerable to path traversal if not properly validated.",
+      "relevant_files": []
+    },
+    {
+      "vuln_type": "idor",
+      "priority": "low",
+      "reason": "Potential for IDOR if access controls are not properly implemented in API endpoints.",
+      "relevant_files": [
+        "Api\\Class.cs",
+        "Api\\Program.cs",
+        "Api\\Startup.cs",
+        "Api\\Const\\ServiceRoleConst.cs",
+        "Api\\Controllers\\Admin\\AuthController.cs",
+        "Api\\Controllers\\Admin\\CitiesController.cs",
+        "Api\\Controllers\\Admin\\ClaimController.cs",
+        "Api\\Controllers\\Admin\\DeviceController.cs",
+        "Api\\Controllers\\Admin\\GroupController.cs",
+        "Api\\Controllers\\Admin\\MenuController.cs",
+        "Api\\Controllers\\Admin\\MenuRoleController.cs",
+        "Api\\Controllers\\Admin\\MenuRoleLogsController.cs",
+        "Api\\Controllers\\Admin\\MenuServiceController.cs",
+        "Api\\Controllers\\Admin\\MerchantController.cs",
+        "Api\\Controllers\\Admin\\OtpController.cs"
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "vuln_type": "hardcoded_secrets",
+      "severity": "medium",
+      "file_path": "Api/appsettings.Development.json",
+      "line_number": 36,
+      "description": "Hardcoded username 'CCPadmin' could be exploited if the configuration file is exposed.",
+      "code_snippet": "\"ClmUsername\": \"CCPadmin\",",
+      "confidence": 0.9,
+      "detected_by": "hardcoded_secrets"
+    },
+    {
+      "vuln_type": "hardcoded_secrets",
+      "severity": "medium",
+      "file_path": "Api/appsettings.json",
+      "line_number": 36,
+      "description": "Hardcoded username 'CCPadmin' could be exploited if the configuration file is exposed.",
+      "code_snippet": "\"ClmUsername\": \"CCPadmin\",",
+      "confidence": 0.9,
+      "detected_by": "hardcoded_secrets"
+    }
+  ],
+  "agents_to_run": [
+    "auth_bypass",
+    "hardcoded_secrets",
+    "insecure_deserialization",
+    "sql_injection",
+    "xss",
+    "ssrf",
+    "path_traversal",
+    "idor"
+  ],
+  "completed_agents": [
+    "auth_bypass",
+    "hardcoded_secrets",
+    "insecure_deserialization",
+    "sql_injection",
+    "xss",
+    "ssrf",
+    "path_traversal",
+    "idor"
+  ],
+  "current_agent": "idor",
+  "errors": [
+    "auth_bypass: Invalid \\escape: line 5 column 26 (char 97)"
+  ],
+  "final_report": "# 🔐 Security Scan Report\n\n**Project:** `Language.UNKNOWN / Framework.UNKNOWN`\n**Findings:** 2  |  🔴 Critical: 0  🟠 High: 0  🟡 Medium: 2  🟢 Low: 0\n\n---\n\n## 🟡 MEDIUM (2)\n\n### 1. Hardcoded Secrets\n**File:** `Api/appsettings.Development.json` · line **36**\n**Confidence:** 90%\n\nHardcoded username 'CCPadmin' could be exploited if the configuration file is exposed.\n```python\n\"ClmUsername\": \"CCPadmin\",\n```\n\n### 2. Hardcoded Secrets\n**File:** `Api/appsettings.json` · line **36**\n**Confidence:** 90%\n\nHardcoded username 'CCPadmin' could be exploited if the configuration file is exposed.\n```python\n\"ClmUsername\": \"CCPadmin\",\n```\n"
+}

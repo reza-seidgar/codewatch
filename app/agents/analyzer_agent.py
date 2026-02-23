@@ -20,7 +20,14 @@ from typing import TypedDict, Annotated, Any, List
 import operator
 from functools import partial
 
-from app.agents.schemas import ProjectAnalysis, VulnerabilityPriority, VulnerabilityType, Priority
+from app.agents.schemas import (
+    ProjectAnalysis,
+    VulnerabilityPriority,
+    VulnerabilityType,
+    Priority,
+    Language,
+    Framework,
+)
 from app.agents.tools.file_scanner import scan_project_structure
 from app.core.llm_client import LLMClient
 
@@ -138,15 +145,30 @@ async def analyze_with_llm_node(state: AnalyzerState, llm_client: LLMClient) -> 
             "Analyze the provided project structure and return ONLY a valid JSON object as described."
         )
 
-        user_prompt_parts = [
-            "Directory tree:\n", directory_tree, "\n",
-            "Config files:\n", json.dumps(config_files, indent=2), "\n",
-            "Dependency files content:\n", json.dumps(dependency_files, indent=2), "\n",
-            "Please determine: language, framework, dependencies (list), entry_points (list of relative paths), and analysis_notes.\n",
-            "Return ONLY a JSON object exactly matching the format: {\n  \"language\": ..., \"framework\": ..., \"dependencies\": [...], \"entry_points\": [...], \"analysis_notes\": \"...\"\n}\n",
-            "Do not include markdown or any commentary."
-        ]
-        user_prompt = "\n".join(user_prompt_parts)
+        user_prompt = (
+            "Directory tree:\n" + directory_tree + "\n\n"
+            + "Config files:\n" + json.dumps(config_files, indent=2) + "\n\n"
+            + "Dependency files content:\n" + json.dumps(dependency_files, indent=2) + "\n\n"
+        )
+
+        user_prompt += """
+**Task:** Return ONLY a valid JSON object (no markdown, no explanations):
+
+{
+    "language": "csharp|python|javascript|typescript|java|go",
+    "framework": "dotnet|dotnet_webapi|django|fastapi|flask|express|nestjs|spring|unknown",
+    "dependencies": ["dep1", "dep2", "dep3"],
+    "entry_points": ["relative/path/to/main.py"],
+    "analysis_notes": "Brief 1-2 sentence description of the project"
+}
+
+**CRITICAL FORMATTING RULES:**
+- language MUST be lowercase: use "csharp" NOT "C#" or "c#"
+- framework MUST be lowercase with underscores: use "dotnet" NOT ".NET" or "DotNet"
+- For .NET Web API projects, use "dotnet_webapi"
+- For ASP.NET projects without Web API, use "dotnet"
+- Keep analysis_notes under 100 words
+"""
 
         messages = [
             {"role": "system", "content": system_prompt},
@@ -273,49 +295,125 @@ def build_final_analysis_node(state: AnalyzerState) -> AnalyzerState:
     در صورت خطا در parse، error رو در state.error ذخیره میکنه
     """
     try:
-        raw = state.get("llm_analysis")
-        if not raw:
-            raise ValueError("No llm_analysis available to build final analysis")
-        parsed = state.get("llm_parsed")
-        if parsed is None:
-            # try to parse raw as fallback
-            parsed = parse_json_safe(raw)
-        # Extract fields
-        language = parsed.get("language", "unknown")
-        framework = parsed.get("framework", "unknown")
-        dependencies = parsed.get("dependencies", []) or []
-        entry_points = parsed.get("entry_points", []) or []
-        analysis_notes = parsed.get("analysis_notes", "")
+        llm_analysis_str = state.get("llm_analysis", "{}")
+        try:
+            llm_analysis = state.get("llm_parsed")
+            if llm_analysis is None:
+                llm_analysis = parse_json_safe(llm_analysis_str) if isinstance(llm_analysis_str, str) else llm_analysis_str
+        except Exception:
+            llm_analysis = {}
 
-        # Build vulnerability priorities models if present
-        vuln_items = state.get("vuln_priorities", [])
+        # --- Normalize Language ---
+        lang_raw = str(llm_analysis.get("language", "unknown")).lower().strip()
+        lang_map = {
+            "c#": "csharp",
+            "csharp": "csharp",
+            "c sharp": "csharp",
+            ".net": "csharp",
+            "dotnet": "csharp",
+            "python": "python",
+            "py": "python",
+            "javascript": "javascript",
+            "js": "javascript",
+            "typescript": "typescript",
+            "ts": "typescript",
+            "java": "java",
+            "go": "go",
+            "golang": "go",
+        }
+        language_str = lang_map.get(lang_raw, "unknown")
+
+        # --- Normalize Framework ---
+        fw_raw = str(llm_analysis.get("framework", "unknown")).lower().strip()
+        fw_raw = fw_raw.replace(" ", "_").replace(".", "")
+        fw_map = {
+            "net": "dotnet",
+            "dotnet": "dotnet",
+            "aspnet": "dotnet_webapi",
+            "asp_net": "dotnet_webapi",
+            "dotnet_webapi": "dotnet_webapi",
+            "netcore": "dotnet",
+            "net_core": "dotnet",
+            "django": "django",
+            "fastapi": "fastapi",
+            "flask": "flask",
+            "express": "express",
+            "expressjs": "express",
+            "nestjs": "nestjs",
+            "nest": "nestjs",
+            "spring": "spring",
+            "spring_boot": "spring",
+            "springboot": "spring",
+        }
+        framework_str = fw_map.get(fw_raw, "unknown")
+
+        # Heuristic: if dotnet and signs of WebAPI exist, prefer dotnet_webapi
+        try:
+            scan = state.get("scan_result", {}) or {}
+            deps = llm_analysis.get("dependencies", []) or []
+            config_files = scan.get("config_files", []) or []
+            files_by_ext = scan.get("files_by_extension", {}) or {}
+            controllers_present = any("controllers" in p.lower() for ext_files in files_by_ext.values() for p in ext_files)
+            webapi_indicators = any("microsoft.aspnetcore.mvc" in d.lower() or "swashbuckle" in d.lower() for d in deps) or controllers_present
+            if framework_str == "dotnet" and webapi_indicators:
+                framework_str = "dotnet_webapi"
+        except Exception:
+            pass
+
+        # --- Dependencies & entry points ---
+        dependencies = llm_analysis.get("dependencies", []) or []
+        entry_points = llm_analysis.get("entry_points", []) or []
+        analysis_notes = llm_analysis.get("analysis_notes", "") or ""
+
+        # --- Parse Vulnerabilities ---
+        vuln_items = state.get("vuln_priorities", []) or []
         vuln_models: List[VulnerabilityPriority] = []
-        for item in vuln_items:
+        for v in vuln_items:
             try:
-                vt = VulnerabilityType(item.get("vuln_type"))
+                vt = VulnerabilityType(v.get("vuln_type", ""))
             except Exception:
-                # fallback to UNKNOWN mapping if available
+                # skip unknown types
                 continue
+            priority_raw = str(v.get("priority", "medium")).lower().strip()
+            if priority_raw not in [p.value for p in Priority]:
+                print(f"   ⚠️  Invalid priority '{priority_raw}', defaulting to 'medium'")
+                priority_raw = "medium"
             try:
-                pr = Priority(item.get("priority"))
+                pr = Priority(priority_raw)
             except Exception:
-                pr = Priority.LOW
-            reason = item.get("reason", "")
+                pr = Priority.MEDIUM
+            reason = v.get("reason", "") or ""
             vuln_models.append(VulnerabilityPriority(vuln_type=vt, priority=pr, reason=reason))
 
+        # --- Build Final Analysis ---
+        try:
+            lang_enum = Language(language_str)
+        except Exception:
+            lang_enum = Language.UNKNOWN
+        try:
+            fw_enum = Framework(framework_str)
+        except Exception:
+            fw_enum = Framework.UNKNOWN
+
         analysis = ProjectAnalysis(
-            language=language,
-            framework=framework,
+            language=lang_enum,
+            framework=fw_enum,
             dependencies=dependencies,
             entry_points=entry_points,
             vulnerability_priorities=vuln_models,
             analysis_notes=analysis_notes,
         )
+
         state["final_analysis"] = analysis
         state.setdefault("messages", []).append("final_analysis_built")
+        print(f"   ✅ Analysis built: {language_str}/{framework_str} with {len(vuln_models)} vulnerabilities")
         return state
-    except Exception as exc:
-        state["error"] = f"build_final_analysis_node error: {exc}"
+    except Exception as e:
+        import traceback
+        error_msg = f"build_final_analysis_node error: {str(e)}"
+        print(f"   ❌ {error_msg}")
+        traceback.print_exc()
+        state["error"] = error_msg
         return state
 
 
